@@ -1,0 +1,6 @@
+# Isso ignora todos os arquivos que começam com ".", exceto aqueles que já estão
+# sob controle de versão.
+.*
+!.editorconfig
+!.envrc
+!.gitignore
