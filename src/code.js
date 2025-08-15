@@ -1,4 +1,5 @@
-const abc = a => b => c => a*b*c/**
+const abc = a => b => c => a*b*c
+console.log (abc(1)(2)(3)/*
 SPDX-License-Identifier: GPL-3.0-or-later
 
 This file is free software: you can redistribute it and/or modify
