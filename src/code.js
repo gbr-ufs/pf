@@ -40,3 +40,33 @@ const escolhaDoComputador = numero => {
         throw error
     }
 }
+
+// A função determinarResultado, mediante currying, cria uma interface genérica
+// para determinar o vencedor de um jogo. OPCAO representa a escolha feita pelo
+// jogador. O verdadeiro argumento para essa função é ESCOLHADOCOMPUTADOR, pois
+// os outros são usados para criar as funções para cada escolha.
+const determinarResultado = opcao => (perde, ganha) => escolhaDoComputador => {
+    // Vi isso em um jogo diferente. É uma boa dar uma pausa antes de dizer se o
+    // jogador ganhou ou perdeu.
+    const DOIS_SEGUNDOS = 2000 // 2 * 1000
+    const mensagemDeEmpate = () => alert("Empate! Ninguém venceu.")
+    const mensagemDeDerrota = () => alert(`Derrota! ${escolhaDoComputador} ganha de ${opcao}.`)
+    const mensagemDeVitoria = () => alert(`Vitória!`)
+    const error = new RangeError(`Opção inesperada, deve ser "pedra", "papel" ou "tesoura"`)
+
+    if (escolhaDoComputador === opcao) {
+        setTimeout(mensagemDeEmpate, DOIS_SEGUNDOS)
+    } else if (escolhaDoComputador === perde) {
+        setTimeout(mensagemDeDerrota, DOIS_SEGUNDOS)
+    } else if (escolhaDoComputador === ganha) {
+        setTimeout(mensagemDeVitoria, DOIS_SEGUNDOS)
+    } else {
+        throw error
+    }
+}
+
+const determinarResultadoPedra = determinarResultado("pedra")("papel", "tesoura")
+
+const determinarResultadoPapel = determinarResultado("papel")("tesoura", "pedra")
+
+const determinarResultadoTesoura = determinarResultado("tesoura")("pedra", "papel")
