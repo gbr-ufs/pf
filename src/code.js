@@ -16,15 +16,15 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // A função aleatorizar gera um número aleatório maior ou igual a zero,
-// porém menor que o número máximo definido,é a função que é usada para
-// determinar a escolha entre pedra, papel ou tesoura, o funcionamento da função é:
+// porém menor que MAX, é a função que é usada para determinar a escolha entre
+// pedra, papel ou tesoura, o funcionamento da função é:
 // Math.random gera um número entre 0 e 1, esse número é multiplicado pelo número máximo
 // e o Math floor por sua vez corta a parte decimal desse número, o tornando inteiro.
 const aleatorizar = max => {
     return Math.floor(Math.random()*max)
 }
 
-// A função escolhaDoComputador determina, por meio de um número, a escolha que
+// A função escolhaDoComputador determina, por meio de NUMERO, a escolha que
 // a máquina oponente irá fazer. Como o jogo só possui três opções, um erro é
 // executado caso passe desse número.
 const escolhaDoComputador = numero => {
