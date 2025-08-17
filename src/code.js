@@ -124,3 +124,21 @@ const criarElemento = (elemento, argumentos) => {
 
         return elementoCriado
     }
+// A função acrescentarElemento tanto cria quanto adiciona um elemento ELEMENTO
+// à um outro PARENTE. Se ELEMENTO for uma string, então ele será primeiro
+// criado antes de ser adicionado à página. Veja @criarElemento para informções
+// sobre o parâmetro ARGUMENTOS.
+const acrescentarElemento = (parente, elemento, argumentos) => {
+    // Cria o elemento primeiro se for uma string.
+    if (typeof(elemento) === "string") {
+        const elementoNormalizado = criarElemento(elemento, argumentos)
+
+        parente.appendChild(elementoNormalizado)
+
+        return elementoNormalizado
+    } else {
+        parente.appendChild(elemento)
+
+        return elemento
+    }
+}
