@@ -86,3 +86,12 @@ const rodada = opcao => {
         throw error
     }
 }
+
+const botaoJogar = document.querySelector("#jogar")
+botaoJogar.addEventListener("click", () => {
+    const seletorDeRodadas = document.querySelector("#rodadas")
+    const numeroDeRodadas = seletorDeRodadas[seletorDeRodadas.selectedIndex].value
+
+    // TODO: definir jogarPeloBotao.
+    jogarPeloBotao(numeroDeRodadas)
+})
