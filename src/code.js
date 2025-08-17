@@ -65,21 +65,33 @@ const determinarResultadoPapel = determinarResultado("papel")("tesoura", "pedra"
 
 const determinarResultadoTesoura = determinarResultado("tesoura")("pedra", "papel")
 
-//Primeiramente foi criada variavéis globais, placarComputador marca os pontos do computador enquanto o placarJogador marca os pontos do Jogador,
-//por fim, historico é a lista que armazena os resultados de cada rodada.
+// Primeiramente foi criada variavéis globais, placarComputador marca os pontos
+// do computador enquanto placarJogador marca os pontos do Jogador.
+// Por fim, historico é a lista que armazena os resultados de cada rodada.
 let placarComputador = 0
 let placarJogador = 0
 let historico = []
-// A função rodada, primeiramente verifica o número de rodadas, como defini para a partida ter no máximo de 5 rodadas, caso já tenha
-//atingido esse limite, aparece o alerta "O jogo acabou! Atualize a página para jogar novamente", caso contrário,a const computador
-// utiliza-se da função escolhaDoComputador passando como argumento pra ela o retorno da função aleatorizar(3), que vai gerar um número entre 0 e 2,
-//transformando o número em Pedra,Papel ou Tesoura, após isso foi criada uma nova variável global, a resultado, que por inicio não tem valor
-//definido, porém mais a frente a mesma recebe o valor do retorno da função determinarResultadoPedra(computador) ou da determinarResultadoPapel(computador) ou da
-//determinarResultadoTesoura(computador), isso depende da opcao(escolha do jogador), essas funções retornam quem ganhou a partida ou se foi empate, portanto
-// resultado ,nada a mais nada a menos, faz guardar o resultado da rodada, com base nisso se resultado for jogador, o placar é atualizado somando 1 ao placar do jogador, se
-// o resultado for computador, o placar é atualizado somando 1 ao placar do computador e se resultado for empate, nenhum dos dois ganham pontos.
-//em seguida o historico é atualizado, guardando o resultado da rodada, por conseguinte é mostrado no console o placar e a rodada e quando bater o número de 5 rodadas
-//é verificado quem ganhou a partida por meio da comparação entre placarJogador e placarComputador.
+
+// A função rodada primeiramente verifica o número de rodadas. Como defini para
+// a partida ter no máximo de 5 rodadas, caso já tenha atingido esse limite,
+// aparece o alerta "O jogo acabou! Atualize a página para jogar novamente",
+// caso contrário, a const computador utiliza-se da função escolhaDoComputador
+// passando como argumento pra ela o retorno da função aleatorizar(3), que vai
+// gerar um número entre 0 e 2, transformando o número em "Pedra", "papel" ou
+// "tesoura".  Após isso foi criada uma nova variável, resultado, que por inicio
+// não tem valor definido, porém mais a frente a mesma recebe o valor do retorno
+// da função determinarResultadoPedra(computador) ou da
+// determinarResultadoPapel(computador) ou da
+// determinarResultadoTesoura(computador), isso depende de OPCAO (escolha do jogador).
+// Essas funções retornam quem ganhou a partida ou se foi empate, portanto, resultado,
+// nada a mais nada a menos, faz guardar o resultado da rodada. Com base nisso,
+// se resultado for jogador, o placar é atualizado somando 1 ao placar do jogador,
+// se o resultado for computador, o placar é atualizado somando 1 ao placar do
+// computador e se resultado for empate, nenhum dos dois ganham pontos. Em seguida
+// o historico é atualizado, guardando o resultado da rodada. Por conseguinte,
+// é mostrado no console o placar e a rodada e quando bater o número de 5 rodadas
+// é verificado quem ganhou a partida por meio da comparação entre
+// placarJogador e placarComputador.
 const rodada = opcao => {
     if (historico.length >= 5)
     {
