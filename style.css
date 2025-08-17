@@ -22,3 +22,9 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
   margin: 0;
   padding: 0;
 }
+
+/* Styling - General */
+
+.title {
+  text-align: center;
+}
