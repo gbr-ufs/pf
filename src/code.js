@@ -93,8 +93,7 @@ let historico = []
 // é verificado quem ganhou a partida por meio da comparação entre
 // placarJogador e placarComputador.
 const rodada = opcao => {
-    if (historico.length >= 5)
-    {
+    if (historico.length >= 5) {
         alert("O jogo acabou! Atualize a página para jogar novamente")
     } else {
         const computador = escolhaDoComputador(aleatorizar(3))
@@ -115,9 +114,13 @@ const rodada = opcao => {
         console.log(`Rodada ${historico.length}`)
         console.log(`Placar: Jogador ${placarJogador} | Computador ${placarComputador}`)
         if (historico.length === 5) {
-            if (placarJogador > placarComputador) alert("Fim do jogo! Você venceu a partida!")
-            else if (placarJogador < placarComputador) alert("Fim do jogo! Você perdeu a partida!")
-            else alert("Fim do jogo! Empate na partida!")
+            if (placarJogador > placarComputador) {
+                alert("Fim do jogo! Você venceu a partida!")
+            } else if (placarJogador < placarComputador) {
+                alert("Fim do jogo! Você perdeu a partida!")
+            } else {
+                alert("Fim do jogo! Empate na partida!")
+            }
         }
     }
 }
