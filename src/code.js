@@ -143,3 +143,26 @@ const acrescentarElemento = (parente, elemento, argumentos) => {
         return elemento
     }
 }
+
+// A função apagarElemento apaga um elemento ELEMENTO encontrado na DOM.
+// ELEMENTO também pode ser uma string para evitar a necessidade de selecionar
+// o elemento primeiro.
+const apagarElemento = elemento => {
+    if (typeof(elemento) === "string") {
+        const elementoNormalizado = selecionarElemento(elemento)
+        // Veja:
+        // <https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild#simple_examples>.
+        // Obrigado a todos os contribuidores do MDN.
+        const parente = elementoNormalizado.parentNode
+
+        if (parente) {
+            parente.removeChild(elementoNormalizado)
+        }
+    } else {
+        const parente = elemento.parentNode
+
+        if (parente) {
+            parente.removeChild(elemento)
+        }
+    }
+}
