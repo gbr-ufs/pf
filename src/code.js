@@ -65,62 +65,24 @@ const determinarResultadoPapel = determinarResultado("papel")("tesoura", "pedra"
 
 const determinarResultadoTesoura = determinarResultado("tesoura")("pedra", "papel")
 
-// Primeiramente foi criada variavéis globais, placarComputador marca os pontos
-// do computador enquanto placarJogador marca os pontos do Jogador.
-// Por fim, historico é a lista que armazena os resultados de cada rodada.
-let placarComputador = 0
-let placarJogador = 0
-let historico = []
-
-// A função rodada primeiramente verifica o número de rodadas. Como defini para
-// a partida ter no máximo de 5 rodadas, caso já tenha atingido esse limite,
-// aparece o alerta "O jogo acabou! Atualize a página para jogar novamente",
-// caso contrário, a const computador utiliza-se da função escolhaDoComputador
-// passando como argumento pra ela o retorno da função aleatorizar(3), que vai
-// gerar um número entre 0 e 2, transformando o número em "Pedra", "papel" ou
-// "tesoura".  Após isso foi criada uma nova variável, resultado, que por inicio
-// não tem valor definido, porém mais a frente a mesma recebe o valor do retorno
-// da função determinarResultadoPedra(computador) ou da
-// determinarResultadoPapel(computador) ou da
-// determinarResultadoTesoura(computador), isso depende de OPCAO (escolha do jogador).
-// Essas funções retornam quem ganhou a partida ou se foi empate, portanto, resultado,
-// nada a mais nada a menos, faz guardar o resultado da rodada. Com base nisso,
-// se resultado for jogador, o placar é atualizado somando 1 ao placar do jogador,
-// se o resultado for computador, o placar é atualizado somando 1 ao placar do
-// computador e se resultado for empate, nenhum dos dois ganham pontos. Em seguida
-// o historico é atualizado, guardando o resultado da rodada. Por conseguinte,
-// é mostrado no console o placar e a rodada e quando bater o número de 5 rodadas
-// é verificado quem ganhou a partida por meio da comparação entre
-// placarJogador e placarComputador.
+// A Função rodada é a função de literalmente somente 1 rodada, ela usa como argumento a escolha do jogador(opcao), de forma que a depender da escolha do jogador
+//o resultado muda, a const computador utiliza-se da função escolhaDoComputador passando como argumento pra ela o retorno da função aleatorizar(3), que vai
+// gerar um número entre 0 e 2, transformando o número em "Pedra", "papel" ou "tesoura".
+//A função também utiliza-se das funções determinarResultadoPedra, determinarResultadoPapel e determinarResultadoTesoura, determinando o vencedor ou se houve empate
+// o retorno da função será esse determinado resultado.
 const rodada = opcao => {
-    if (historico.length >= 5) {
-        alert("O jogo acabou! Atualize a página para jogar novamente")
-    } else {
-        const computador = escolhaDoComputador(aleatorizar(3))
-        let resultado
-        if (opcao === "pedra") {
-            resultado = determinarResultadoPedra(computador)
-        } else if (opcao === "papel") {
-            resultado = determinarResultadoPapel(computador)
-        } else if (opcao === "tesoura") {
-            resultado = determinarResultadoTesoura(computador)
-        }
-        if (resultado === "jogador") {
-            placarJogador++
-        } else if (resultado === "computador") {
-            placarComputador++
-        }
-        historico = [...historico, resultado]
-        console.log(`Rodada ${historico.length}`)
-        console.log(`Placar: Jogador ${placarJogador} | Computador ${placarComputador}`)
-        if (historico.length === 5) {
-            if (placarJogador > placarComputador) {
-                alert("Fim do jogo! Você venceu a partida!")
-            } else if (placarJogador < placarComputador) {
-                alert("Fim do jogo! Você perdeu a partida!")
-            } else {
-                alert("Fim do jogo! Empate na partida!")
-            }
-        }
+    const computador = escolhaDoComputador(aleatorizar(3))
+    const error = new RangeError(`Erro! opção errada, deve ser "pedra", "papel" ou "tesoura"`)
+    if (opcao === "pedra") {
+        const resultado = determinarResultadoPedra(computador)
+        return resultado
+        }else if(opcao === "papel") {
+        const resultado = determinarResultadoPapel(computador)
+        return resultado
+         }else if(opcao === "tesoura") {
+        const resultado = determinarResultadoTesoura(computador)
+        return resultado
+        } else {
+        throw error
     }
 }
