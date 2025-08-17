@@ -102,3 +102,25 @@ botaoJogar.addEventListener("click", () => {
 // funcionalidade padrão do querySelector (ou seja, é possível selecionar
 // um elemento da página por sua tag, classe ou id).
 const selecionarElemento = elemento => document.querySelector(elemento)
+
+// A função criarElemento cria um elemento do tipo ELEMENTO, e retorna o
+// elemento criado caso seja preciso interagir com ele.
+// ARGUMENTOS é um registro que pode ter as seguintes chaves:
+// - texto: o texto que vai aparecer dentro do elemento;
+// - classe: a classe que o elemento vai ter (bom para CSS);
+// - id: o id que o elemento vai ter (também bom para CSS).
+const criarElemento = (elemento, argumentos) => {
+        const elementoCriado = document.createElement(elemento)
+
+        if (argumentos.texto) {
+            elementoCriado.textContent = argumentos.texto
+        }
+        if (argumentos.classe) {
+            elementoCriado.classList.add(argumentos.classe)
+        }
+        if (argumentos.id) {
+            elementoCriado.setAttribute("id", argumentos.id)
+        }
+
+        return elementoCriado
+    }
