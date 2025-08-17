@@ -95,3 +95,10 @@ botaoJogar.addEventListener("click", () => {
     // TODO: definir jogarPeloBotao.
     jogarPeloBotao(numeroDeRodadas)
 })
+
+// A função selecionarElemento funciona como interface mais funcional para a
+// interação com o DOM, em comparação com a implementação original baseada
+// em objetos. Essa função seleciona um elemento ELEMENTO baseado na
+// funcionalidade padrão do querySelector (ou seja, é possível selecionar
+// um elemento da página por sua tag, classe ou id).
+const selecionarElemento = elemento => document.querySelector(elemento)
