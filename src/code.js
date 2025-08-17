@@ -76,13 +76,13 @@ const rodada = opcao => {
     if (opcao === "pedra") {
         const resultado = determinarResultadoPedra(computador)
         return resultado
-        }else if(opcao === "papel") {
+    }else if(opcao === "papel") {
         const resultado = determinarResultadoPapel(computador)
         return resultado
-         }else if(opcao === "tesoura") {
+    }else if(opcao === "tesoura") {
         const resultado = determinarResultadoTesoura(computador)
         return resultado
-        } else {
+    } else {
         throw error
     }
 }
@@ -110,20 +110,21 @@ const selecionarElemento = elemento => document.querySelector(elemento)
 // - classe: a classe que o elemento vai ter (bom para CSS);
 // - id: o id que o elemento vai ter (também bom para CSS).
 const criarElemento = (elemento, argumentos) => {
-        const elementoCriado = document.createElement(elemento)
+    const elementoCriado = document.createElement(elemento)
 
-        if (argumentos.texto) {
-            elementoCriado.textContent = argumentos.texto
-        }
-        if (argumentos.classe) {
-            elementoCriado.classList.add(argumentos.classe)
-        }
-        if (argumentos.id) {
-            elementoCriado.setAttribute("id", argumentos.id)
-        }
-
-        return elementoCriado
+    if (argumentos.texto) {
+        elementoCriado.textContent = argumentos.texto
     }
+    if (argumentos.classe) {
+        elementoCriado.classList.add(argumentos.classe)
+    }
+    if (argumentos.id) {
+        elementoCriado.setAttribute("id", argumentos.id)
+    }
+
+    return elementoCriado
+}
+
 // A função acrescentarElemento tanto cria quanto adiciona um elemento ELEMENTO
 // à um outro PARENTE. Se ELEMENTO for uma string, então ele será primeiro
 // criado antes de ser adicionado à página. Veja @criarElemento para informções
