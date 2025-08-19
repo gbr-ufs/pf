@@ -65,12 +65,12 @@ const determinarResultadoPapel = determinarResultado("papel")("tesoura", "pedra"
 
 const determinarResultadoTesoura = determinarResultado("tesoura")("pedra", "papel")
 
-// A Função rodada é a função de literalmente somente 1 rodada, ela usa como argumento a escolha do jogador(opcao), de forma que a depender da escolha do jogador
+// A Função jogarRodada é a função de literalmente somente 1 rodada, ela usa como argumento a escolha do jogador(opcao), de forma que a depender da escolha do jogador
 //o resultado muda, a const computador utiliza-se da função escolhaDoComputador passando como argumento pra ela o retorno da função aleatorizar(3), que vai
 // gerar um número entre 0 e 2, transformando o número em "Pedra", "papel" ou "tesoura".
 //A função também utiliza-se das funções determinarResultadoPedra, determinarResultadoPapel e determinarResultadoTesoura, determinando o vencedor ou se houve empate
 // o retorno da função será esse determinado resultado.
-const rodada = opcao => {
+const jogarRodada = opcao => {
     const computador = escolhaDoComputador(aleatorizar(3))
     const error = new RangeError(`Erro! opção errada, deve ser "pedra", "papel" ou "tesoura"`)
     if (opcao === "pedra") {
@@ -219,7 +219,7 @@ const jogarPeloBotao = (numeroDeRodadas) => {
 
     // A função lidarComClique serve apenas como event listeners para os botões.
     const lidarComClique = (opcao) => {
-        const resultado = rodada(opcao)
+        const resultado = jogarRodada(opcao)
         atualizarEstado(resultado)
     }
 
