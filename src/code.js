@@ -92,7 +92,6 @@ botaoJogar.addEventListener("click", () => {
     const seletorDeRodadas = document.querySelector("#rodadas")
     const numeroDeRodadas = seletorDeRodadas[seletorDeRodadas.selectedIndex].value
 
-    // TODO: definir jogarPeloBotao.
     jogarPeloBotao(numeroDeRodadas)
 })
 
@@ -165,4 +164,66 @@ const apagarElemento = elemento => {
             parente.removeChild(elemento)
         }
     }
+}
+
+// A função jogarPeloBotao é a principal função do repositório. Ela que permite
+// que o jogo seja jogado, alterando a página para adicionar os botões para a
+// gameplay.
+// Ela tem NUMERODERODADAS como parâmetro, que determina quantas vezes o jogo
+// será jogado.
+const jogarPeloBotao = (numeroDeRodadas) => {
+    // Isso apaga os botões originais, que serão substituídos.
+    apagarElemento(".container")
+
+    const containerBotao = acrescentarElemento(document.body, "div", {classe: "container"})
+    const botaoPedra = criarElemento("button", {texto: "🪨 Pedra"})
+    const botaoPapel = criarElemento("button", {texto: "📄 Papel"})
+    const botaoTesoura = criarElemento("button", {texto:  "✂️ Tesoura"})
+    const botoes = [botaoPedra, botaoPapel, botaoTesoura]
+    botoes.map((item) => acrescentarElemento(containerBotao, item))
+
+    let estadoDoJogo = {
+        rodadas: numeroDeRodadas,
+        pontuacaoJogador: 0,
+        pontuacaoComputador: 0
+    }
+
+    // A função atualizarEstado atualiza o estado do jogo. Determina quem
+    // ganhou e quem perdeu por RESULTADO.
+    const atualizarEstado = (resultado) => {
+        estadoDoJogo.rodadas--
+
+        if (resultado === "jogador") {
+            estadoDoJogo.pontuacaoJogador++
+        } else if (resultado === "computador") {
+            estadoDoJogo.pontuacaoComputador++
+        } else {
+            console.log("TODO: criar umas notificaçõezinhas para as rodadas.")
+        }
+
+        // TODO: Substituir alerts pela notificação.
+        if (estadoDoJogo.rodadas === 0) {
+            alert("jogo acabou!")
+            if (estadoDoJogo.pontuacaoJogador > estadoDoJogo.pontuacaoComputador) {
+                alert("você ganhou!")
+            } else if (estadoDoJogo.pontuacaoJogador < estadoDoJogo.pontuacaoComputador) {
+                alert("você perdeu!")
+            } else {
+                alert("empatou!")
+            }
+            botaoPedra.disabled = true;
+            botaoPapel.disabled = true;
+            botaoTesoura.disabled = true;
+        }
+    }
+
+    // A função lidarComClique serve apenas como event listeners para os botões.
+    const lidarComClique = (opcao) => {
+        const resultado = rodada(opcao)
+        atualizarEstado(resultado)
+    }
+
+    botaoPedra.addEventListener("click", () => lidarComClique("pedra"))
+    botaoPapel.addEventListener("click", () => lidarComClique("papel"))
+    botaoTesoura.addEventListener("click", () => lidarComClique("tesoura"))
 }
