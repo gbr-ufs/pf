@@ -17,14 +17,42 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 /* Reset */
 
+
 * {
+
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  margin: 8px;
+  padding: 15px;
+  color-scheme: 100%;
+  color: rgb(0, 0, 0) ;
 }
 
 /* Styling - General */
 
 .title {
   text-align: center;
+}
+body {
+  background-color: rgb(207, 221, 233);
+}
+select
+{
+background-color: grey;
+color: rgb(207, 221, 233);
+}
+button
+{
+  display: block;
+  background-color: grey;
+  color: rgb(207, 221, 233);
+  padding: 10px;
+  text-decoration: none;
+}
+a
+{
+  cursor: pointer;
+}
+select
+{
+  cursor: pointer;
 }
