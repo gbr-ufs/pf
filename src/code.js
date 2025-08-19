@@ -172,7 +172,6 @@ const jogarPeloBotao = (numeroDeRodadas) => {
             throw error
         }
     }
-
     // Isso apaga os botões originais, que serão substituídos.
     apagarElemento(".container")
 
@@ -188,11 +187,16 @@ const jogarPeloBotao = (numeroDeRodadas) => {
         pontuacaoJogador: 0,
         pontuacaoComputador: 0
     }
+    //esta função exibe quem ganhou a rodada atual
+    const exibirPlacarFinal = (estado) => 
+    `Placar final: Jogador ${estado.pontuacaoJogador} x ${estado.pontuacaoComputador} Computador`
 
     // A função atualizarEstado atualiza o estado do jogo. Determina quem
     // ganhou e quem perdeu por RESULTADO.
     const atualizarEstado = (resultado) => {
         estadoDoJogo.rodadas--
+        alert(exibirPlacarFinal(estadoDoJogo));
+
 
         if (resultado === "jogador") {
             estadoDoJogo.pontuacaoJogador++
