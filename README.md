@@ -27,6 +27,7 @@ Tendo esse projeto feito, demonstramos conhecer:
 
 Membros da equipe do projeto.
 
+- [Amizael Vieira Dos Santos Neto](https://github.com/amizaelmoreira6-cpu).
 - [Gabriel Santos de Souza](https://github.com/gbr-ufs).
 - [Maiara Silva Gois](https://github.com/maiarasgois).
 
