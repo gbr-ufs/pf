@@ -15,12 +15,21 @@ You should have received a copy of the GNU General Public License
 along with this file.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+// adiciona um áudio na função de jogar que fica inicia e repetindo ate o jogador reiniciar
+const som = new Audio("src/music.mp3");
+som.loop = true;
+som.volume = 0.5;
+
 const botaoJogar = document.querySelector("#jogar")
 botaoJogar.addEventListener("click", () => {
     const seletorDeRodadas = document.querySelector("#rodadas")
     const numeroDeRodadas = seletorDeRodadas[seletorDeRodadas.selectedIndex].value
 
     jogarPeloBotao(numeroDeRodadas)
+
+    // toca a música quando clicar em Jogar
+    som.play();
 })
 
 // A função jogarPeloBotao é a principal função do repositório. Ela que permite
@@ -172,6 +181,7 @@ const jogarPeloBotao = (numeroDeRodadas) => {
             throw error
         }
     }
+
     // Isso apaga os botões originais, que serão substituídos.
     apagarElemento(".container")
 
@@ -187,40 +197,48 @@ const jogarPeloBotao = (numeroDeRodadas) => {
         pontuacaoJogador: 0,
         pontuacaoComputador: 0
     }
-    //esta função exibe quem ganhou a rodada atual
-    const exibirPlacarFinal = (estado) => 
-    `Placar final: Jogador ${estado.pontuacaoJogador} x ${estado.pontuacaoComputador} Computador`
+    // A função atualizarEstado atualiza o estado do jogo. Determina quem ganhou e quem perdeu por RESULTADO.
+const divResultado = document.querySelector("#resultado");
+const divPlacar = document.querySelector("#placar");
 
-    // A função atualizarEstado atualiza o estado do jogo. Determina quem
-    // ganhou e quem perdeu por RESULTADO.
-    const atualizarEstado = (resultado) => {
-        estadoDoJogo.rodadas--
-        alert(exibirPlacarFinal(estadoDoJogo));
+const atualizarEstado = (resultado) => {
+    estadoDoJogo.rodadas--;
 
-
-        if (resultado === "jogador") {
-            estadoDoJogo.pontuacaoJogador++
-        } else if (resultado === "computador") {
-            estadoDoJogo.pontuacaoComputador++
-        } else {
-            console.log("TODO: criar umas notificaçõezinhas para as rodadas.")
-        }
-
-        // TODO: Substituir alerts pela notificação.
-        if (estadoDoJogo.rodadas === 0) {
-            alert("jogo acabou!")
-            if (estadoDoJogo.pontuacaoJogador > estadoDoJogo.pontuacaoComputador) {
-                alert("você ganhou!")
-            } else if (estadoDoJogo.pontuacaoJogador < estadoDoJogo.pontuacaoComputador) {
-                alert("você perdeu!")
-            } else {
-                alert("empatou!")
-            }
-            botaoPedra.disabled = true;
-            botaoPapel.disabled = true;
-            botaoTesoura.disabled = true;
-        }
+    // mostra resultado da rodada
+    if (resultado === "jogador") {
+        estadoDoJogo.pontuacaoJogador++;
+        divResultado.textContent = "Você ganhou a rodada!";
+    } else if (resultado === "computador") {
+        estadoDoJogo.pontuacaoComputador++;
+        divResultado.textContent = "O computador ganhou a rodada!";
+    } else {
+        divResultado.textContent = "Rodada empatada!";
     }
+
+    // mostra placar atualizado
+    divPlacar.textContent =
+        `Placar → Você: ${estadoDoJogo.pontuacaoJogador} | Computador: ${estadoDoJogo.pontuacaoComputador} | Rodadas restantes: ${estadoDoJogo.rodadas}`;
+
+    // se acabou o jogo
+    if (estadoDoJogo.rodadas === 0) {
+        let mensagemFinal = "Jogo acabou! ";
+
+        if (estadoDoJogo.pontuacaoJogador > estadoDoJogo.pontuacaoComputador) {
+            mensagemFinal += "🎉 Você ganhou o jogo!";
+        } else if (estadoDoJogo.pontuacaoJogador < estadoDoJogo.pontuacaoComputador) {
+            mensagemFinal += "😢 Você perdeu o jogo!";
+        } else {
+            mensagemFinal += "🤝 O jogo empatou!";
+        }
+
+        divResultado.textContent = mensagemFinal;
+
+        // desativa os botões
+        botaoPedra.disabled = true;
+        botaoPapel.disabled = true;
+        botaoTesoura.disabled = true;
+    }
+};
 
     // A função lidarComClique serve apenas como event listeners para os botões.
     const lidarComClique = (opcao) => {
