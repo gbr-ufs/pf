@@ -120,6 +120,8 @@ const jogarPeloBotao = (numeroDeRodadas) => {
         // pedra, papel ou tesoura, o funcionamento da função é:
         // Math.random gera um número entre 0 e 1, esse número é multiplicado pelo número máximo
         // e o Math floor por sua vez corta a parte decimal desse número, o tornando inteiro.
+        //OBS: O uso de Math.random foi necessário, visto que o javascript não oferece uma forma
+        //puramente funcional de gerar números aleátorios.
         const aleatorizar = max => {
             return Math.floor(Math.random()*max)
         }
@@ -191,7 +193,9 @@ const jogarPeloBotao = (numeroDeRodadas) => {
     const botaoTesoura = criarElemento("button", {texto:  "✂️ Tesoura"})
     const botoes = [botaoPedra, botaoPapel, botaoTesoura]
     botoes.map((item) => acrescentarElemento(containerBotao, item))
-
+   //OBS:Foi necessário o uso do let pois o placar deve ser atualizado em tempo real, sendo assim estadoDoJogo,precisa ser
+   //modificao ao decorrer do progama(ou no caso, ao decorrer das rodadas), refletindo os respectivos resultados, o let é usado
+   // para permitir a reatribuição.
     let estadoDoJogo = {
         rodadas: numeroDeRodadas,
         pontuacaoJogador: 0,
