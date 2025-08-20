@@ -19,40 +19,76 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 
 * {
-
   box-sizing: border-box;
-  margin: 8px;
-  padding: 15px;
-  color-scheme: 100%;
-  color: rgb(0, 0, 0) ;
+  margin: 0;
+  padding: 0;
 }
 
-/* Styling - General */
+body {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
 
 .title {
   text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
-body {
-  background-color: rgb(207, 221, 233);
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
 }
-select
-{
-background-color: grey;
-color: rgb(207, 221, 233);
+
+
+button {
+  background: #fff;
+  color: #333;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
-button
-{
-  display: block;
-  background-color: grey;
-  color: rgb(207, 221, 233);
-  padding: 10px;
+
+button:hover {
+  background: #ffd166;
+  transform: scale(1.08);
+}
+
+button a {
   text-decoration: none;
+  color: inherit;
 }
-a
-{
-  cursor: pointer;
+
+
+.info-buttons {
+  display: flex;
+  gap: 1rem;
 }
-select
-{
-  cursor: pointer;
+
+
+.hidden {
+  display: none;
+}
+
+
+#opcoes {
+  display: flex;            
+  gap: 1rem;                
+  margin-top: 1.5rem;       
+  justify-content: center;  
 }
