@@ -172,12 +172,15 @@ const jogarPeloBotao = (numeroDeRodadas) => {
 
         if (opcao === "pedra") {
             const resultado = determinarResultadoPedra(computador)
+            document.getElementById('escolhadocomputador').textContent = `O computador escolheu: ${computador}`
             return resultado
         } else if(opcao === "papel") {
             const resultado = determinarResultadoPapel(computador)
+            document.getElementById('escolhadocomputador').textContent = `O computador escolheu: ${computador}`
             return resultado
         } else if(opcao === "tesoura") {
             const resultado = determinarResultadoTesoura(computador)
+            document.getElementById('escolhadocomputador').textContent = `O computador escolheu: ${computador}`
             return resultado
         } else {
             throw error
