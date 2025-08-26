@@ -1,4 +1,4 @@
-# Pedra, papel e tesoura
+# [Pedra, papel e tesoura](https://pedra-papel-e-tesoura-ufs-2025.netlify.app/)
 
 ***Jokenpô***
 
