@@ -196,6 +196,12 @@ const jogarPeloBotao = (numeroDeRodadas) => {
     const botaoTesoura = criarElemento("button", {texto:  "✂️ Tesoura"})
     const botoes = [botaoPedra, botaoPapel, botaoTesoura]
     botoes.map((item) => acrescentarElemento(containerBotao, item))
+    const containerInicio = acrescentarElemento(document.body, "div", {classe: "container-inicio"})
+    const botaoInicio = criarElemento("button",{ texto: "Início" })
+botaoInicio.addEventListener("click",()=>{
+    window.location.href = "index.html"
+})
+acrescentarElemento(document.body, botaoInicio)
    //OBS:Foi necessário o uso do let pois o placar deve ser atualizado em tempo real, sendo assim estadoDoJogo,precisa ser
    //modificao ao decorrer do progama(ou no caso, ao decorrer das rodadas), refletindo os respectivos resultados, o let é usado
    // para permitir a reatribuição.
