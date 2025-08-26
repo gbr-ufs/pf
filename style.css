@@ -61,6 +61,12 @@ button a {
   display: flex;
   gap: 1rem;
 }
+/* Container do botão inicio*/
+.container-inicio {
+  margin-top: 30px;         /* afasta do container de opções */
+  display: flex;            /* permite usar justify-content */
+  justify-content: center;  /* centraliza o botão */
+}
 
 /* Classe para esconder elementos */
 .hidden {
