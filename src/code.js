@@ -180,60 +180,61 @@ const jogarPeloBotao = (numeroDeRodadas) => {
     botoes.map((item) => acrescentarElemento(containerBotao, item))
     const containerInicio = acrescentarElemento(document.body, "div", {classe: "container-inicio"})
     const botaoInicio = criarElemento("button",{ texto: "Início" })
-botaoInicio.addEventListener("click",()=>{
-    window.location.href = "index.html"
-})
-acrescentarElemento(document.body, botaoInicio)
-   //OBS:Foi necessário o uso do let pois o placar deve ser atualizado em tempo real, sendo assim estadoDoJogo,precisa ser
-   //modificao ao decorrer do progama(ou no caso, ao decorrer das rodadas), refletindo os respectivos resultados, o let é usado
-   // para permitir a reatribuição.
+    botaoInicio.addEventListener("click",()=>{
+        window.location.href = "index.html"
+    })
+    acrescentarElemento(document.body, botaoInicio)
+
+    //OBS:Foi necessário o uso do let pois o placar deve ser atualizado em tempo real, sendo assim estadoDoJogo,precisa ser
+    //modificao ao decorrer do progama(ou no caso, ao decorrer das rodadas), refletindo os respectivos resultados, o let é usado
+    // para permitir a reatribuição.
     let estadoDoJogo = {
         rodadas: numeroDeRodadas,
         pontuacaoJogador: 0,
         pontuacaoComputador: 0
     }
     // A função atualizarEstado atualiza o estado do jogo. Determina quem ganhou e quem perdeu por RESULTADO.
-const divResultado = document.querySelector("#resultado");
-const divPlacar = document.querySelector("#placar");
+    const divResultado = document.querySelector("#resultado");
+    const divPlacar = document.querySelector("#placar");
 
-const atualizarEstado = (resultado) => {
-    estadoDoJogo.rodadas--;
+    const atualizarEstado = (resultado) => {
+        estadoDoJogo.rodadas--;
 
-    // mostra resultado da rodada
-    if (resultado === "jogador") {
-        estadoDoJogo.pontuacaoJogador++;
-        divResultado.textContent = "Você ganhou a rodada!";
-    } else if (resultado === "computador") {
-        estadoDoJogo.pontuacaoComputador++;
-        divResultado.textContent = "O computador ganhou a rodada!";
-    } else {
-        divResultado.textContent = "Rodada empatada!";
-    }
-
-    // mostra placar atualizado
-    divPlacar.textContent =
-        `Placar → Você: ${estadoDoJogo.pontuacaoJogador} | Computador: ${estadoDoJogo.pontuacaoComputador} | Rodadas restantes: ${estadoDoJogo.rodadas}`;
-
-    // se acabou o jogo
-    if (estadoDoJogo.rodadas === 0) {
-        let mensagemFinal = "Jogo acabou! ";
-
-        if (estadoDoJogo.pontuacaoJogador > estadoDoJogo.pontuacaoComputador) {
-            mensagemFinal += "🎉 Você ganhou o jogo!";
-        } else if (estadoDoJogo.pontuacaoJogador < estadoDoJogo.pontuacaoComputador) {
-            mensagemFinal += "😢 Você perdeu o jogo!";
+        // mostra resultado da rodada
+        if (resultado === "jogador") {
+            estadoDoJogo.pontuacaoJogador++;
+            divResultado.textContent = "Você ganhou a rodada!";
+        } else if (resultado === "computador") {
+            estadoDoJogo.pontuacaoComputador++;
+            divResultado.textContent = "O computador ganhou a rodada!";
         } else {
-            mensagemFinal += "🤝 O jogo empatou!";
+            divResultado.textContent = "Rodada empatada!";
         }
 
-        divResultado.textContent = mensagemFinal;
+        // mostra placar atualizado
+        divPlacar.textContent =
+            `Placar → Você: ${estadoDoJogo.pontuacaoJogador} | Computador: ${estadoDoJogo.pontuacaoComputador} | Rodadas restantes: ${estadoDoJogo.rodadas}`;
 
-        // desativa os botões
-        botaoPedra.disabled = true;
-        botaoPapel.disabled = true;
-        botaoTesoura.disabled = true;
-    }
-};
+        // se acabou o jogo
+        if (estadoDoJogo.rodadas === 0) {
+            let mensagemFinal = "Jogo acabou! ";
+
+            if (estadoDoJogo.pontuacaoJogador > estadoDoJogo.pontuacaoComputador) {
+                mensagemFinal += "🎉 Você ganhou o jogo!";
+            } else if (estadoDoJogo.pontuacaoJogador < estadoDoJogo.pontuacaoComputador) {
+                mensagemFinal += "😢 Você perdeu o jogo!";
+            } else {
+                mensagemFinal += "🤝 O jogo empatou!";
+            }
+
+            divResultado.textContent = mensagemFinal;
+
+            // desativa os botões
+            botaoPedra.disabled = true;
+            botaoPapel.disabled = true;
+            botaoTesoura.disabled = true;
+        }
+    };
 
     // A função lidarComClique serve apenas como event listeners para os botões.
     const lidarComClique = (opcao) => {
