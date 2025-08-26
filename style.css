@@ -45,7 +45,7 @@ button {
 }
 
 button:hover {
-  
+
   background: #ffd166;
   transform: scale(1.08);
 }
@@ -56,7 +56,7 @@ button a {
   color: inherit;
 }
 
-/* Container dos botões de créditos e licença */
+/* Container dos botões de créditos */
 .info-buttons {
   display: flex;
   gap: 1rem;
