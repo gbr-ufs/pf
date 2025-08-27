@@ -222,10 +222,11 @@ const jogarPeloBotao = (numeroDeRodadas) => {
 
         // se acabou o jogo
         if (estadoDoJogo.rodadas === 0) {
-            const mensagemFinal = "Jogo acabou! " + (estadoDoJogo.pontuacaoJogador > estadoDoJogo.pontuacaoComputador) ?
-                "🎉 Você ganhou o jogo!"
-                :estadoDoJogo.pontuacaoJogador < estadoDoJogo.pontuacaoComputador ? "😢 Você perdeu o jogo!"
-                :"🤝 O jogo empatou!");
+           const mensagemFinal = "Jogo acabou! " +
+            (estadoDoJogo.pontuacaoJogador > estadoDoJogo.pontuacaoComputador ? "🎉 Você ganhou o jogo!"
+            :estadoDoJogo.pontuacaoJogador < estadoDoJogo.pontuacaoComputador ? "😢 Você perdeu o jogo!"
+            :"🤝 O jogo empatou!");
+            
             divResultado.textContent = mensagemFinal;
 
             // desativa os botões para impedir o jogador de continuar clicando após o fim de jogo.
