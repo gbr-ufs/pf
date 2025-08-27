@@ -85,6 +85,9 @@ const jogarPeloBotao = (numeroDeRodadas) => {
                 parente.removeChild(elementoNormalizado)
             }
         } else {
+            // Veja:
+            // <https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild#simple_examples>.
+            // Obrigado a todos os contribuidores do MDN.
             const parente = elemento.parentNode
 
             if (parente) {
@@ -191,7 +194,7 @@ const jogarPeloBotao = (numeroDeRodadas) => {
     acrescentarElemento(document.body, botaoInicio)
 
     //OBS:Foi necessário o uso do let pois o placar deve ser atualizado em tempo real, sendo assim estadoDoJogo,precisa ser
-    //modificao ao decorrer do progama(ou no caso, ao decorrer das rodadas), refletindo os respectivos resultados, o let é usado
+    //modificado ao decorrer do progama(ou no caso, ao decorrer das rodadas), refletindo os respectivos resultados, o let é usado
     // para permitir a reatribuição.
     let estadoDoJogo = {
         rodadas: numeroDeRodadas,
