@@ -2,7 +2,9 @@
 const som = new Audio("src/music.mp3");
 som.loop = true;
 som.volume = 0.5;
-
+//Seleciona o botão Jogar e adiciona um listener de clique, quando o clique for efetuado nesse botão, o número de rodadas
+//escolhido pelo jogador no <select> será lido, dessa forma a função JogarPeloBotao vai ser chamada com esse número e a
+//música iniciará.
 const botaoJogar = document.querySelector("#jogar")
 botaoJogar.addEventListener("click", () => {
     const seletorDeRodadas = document.querySelector("#rodadas")
@@ -171,13 +173,16 @@ const jogarPeloBotao = (numeroDeRodadas) => {
 
     // Isso apaga os botões originais, que serão substituídos.
     apagarElemento(".container")
-
+    //Criação de um container para os botões da gameplay, e a criação dos botões Pedra,Papel e Tesoura,
+    //os quais são adicionados dinamicamente à página.
     const containerBotao = acrescentarElemento(document.body, "div", {classe: "container"})
     const botaoPedra = criarElemento("button", {texto: "🪨 Pedra"})
     const botaoPapel = criarElemento("button", {texto: "📄 Papel"})
     const botaoTesoura = criarElemento("button", {texto:  "✂️ Tesoura"})
     const botoes = [botaoPedra, botaoPapel, botaoTesoura]
     botoes.map((item) => acrescentarElemento(containerBotao, item))
+    //Criação de um container para o botão inicio,o mesmo após ser clicado pelo jogador, retorna para a página principal, por fim o botão é adicionado ao
+    //body do documento.
     const containerInicio = acrescentarElemento(document.body, "div", {classe: "container-inicio"})
     const botaoInicio = criarElemento("button",{ texto: "Início" })
     botaoInicio.addEventListener("click",()=>{
@@ -193,10 +198,10 @@ const jogarPeloBotao = (numeroDeRodadas) => {
         pontuacaoJogador: 0,
         pontuacaoComputador: 0
     }
-    // A função atualizarEstado atualiza o estado do jogo. Determina quem ganhou e quem perdeu por RESULTADO.
+    //Seleciona as divs pré-existentes no html que serão utilizadas, para mostrar o resultado de cada rodada e atualizar o placar.
     const divResultado = document.querySelector("#resultado");
     const divPlacar = document.querySelector("#placar");
-
+    // A função atualizarEstado atualiza o estado do jogo. Determina quem ganhou e quem perdeu por RESULTADO.
     const atualizarEstado = (resultado) => {
         estadoDoJogo.rodadas--;
 
@@ -217,19 +222,13 @@ const jogarPeloBotao = (numeroDeRodadas) => {
 
         // se acabou o jogo
         if (estadoDoJogo.rodadas === 0) {
-            let mensagemFinal = "Jogo acabou! ";
-
-            if (estadoDoJogo.pontuacaoJogador > estadoDoJogo.pontuacaoComputador) {
-                mensagemFinal += "🎉 Você ganhou o jogo!";
-            } else if (estadoDoJogo.pontuacaoJogador < estadoDoJogo.pontuacaoComputador) {
-                mensagemFinal += "😢 Você perdeu o jogo!";
-            } else {
-                mensagemFinal += "🤝 O jogo empatou!";
-            }
-
+            const mensagemFinal = "Jogo acabou! " + (estadoDoJogo.pontuacaoJogador > estadoDoJogo.pontuacaoComputador) ?
+                "🎉 Você ganhou o jogo!"
+                :estadoDoJogo.pontuacaoJogador < estadoDoJogo.pontuacaoComputador ? "😢 Você perdeu o jogo!"
+                :"🤝 O jogo empatou!");
             divResultado.textContent = mensagemFinal;
 
-            // desativa os botões
+            // desativa os botões para impedir o jogador de continuar clicando após o fim de jogo.
             botaoPedra.disabled = true;
             botaoPapel.disabled = true;
             botaoTesoura.disabled = true;
@@ -241,7 +240,7 @@ const jogarPeloBotao = (numeroDeRodadas) => {
         const resultado = jogarRodada(opcao)
         atualizarEstado(resultado)
     }
-
+    //Adiciona listeners para os 3 botões de jogo, cada botão chama a função lidarComClique com a opção correspodente,executando uma rodada do jogo e atualizando o placar.
     botaoPedra.addEventListener("click", () => lidarComClique("pedra"))
     botaoPapel.addEventListener("click", () => lidarComClique("papel"))
     botaoTesoura.addEventListener("click", () => lidarComClique("tesoura"))
