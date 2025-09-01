@@ -22,10 +22,13 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Container principal */
+/* Container principal
+ * É usado o modelo de display grid e o atributo grid-gap em conjunto ao gap
+ * pois versões antigas do Safari não suportam o uso de gap com o modelo flex.
+ */
 .container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-gap: 1rem;
   gap: 1rem;
   align-items: center;
 }
@@ -56,9 +59,13 @@ button a {
   color: inherit;
 }
 
-/* Container dos botões de créditos */
+/* Container dos botões de créditos
+ * É usado o modelo de display grid e o atributo grid-gap em conjunto ao gap
+ * pois versões antigas do Safari não suportam o uso de gap com o modelo flex.
+ */
 .info-buttons {
-  display: flex;
+  display: grid;
+  grid-gap: 1rem;
   gap: 1rem;
 }
 /* Container do botão inicio*/
@@ -73,9 +80,13 @@ button a {
   display: none;
 }
 
-/* Container dos botões Pedra/Papel/Tesoura */
+/* Container dos botões Pedra/Papel/Tesoura
+ * É usado o modelo de display grid e o atributo grid-gap em conjunto ao gap
+ * pois versões antigas do Safari não suportam o uso de gap com o modelo flex.
+ */
 #opcoes {
-  display: flex;            /* coloca os botões em linha */
+  display: grid;            /* coloca os botões em linha */
+  grid-gap: 1rem;           /* espaço entre os botões */
   gap: 1rem;                /* espaço entre os botões */
   margin-top: 1.5rem;       /* distância do botão Jogar */
   justify-content: center;  /* centraliza horizontalmente */
